@@ -10,6 +10,6 @@ namespace PFSSITE.Models
         public string SessionName { get; set; }
 
         public string Description { get; set; }
-        public ICollection<ClassViewModel> Class { get; set; }
+        public ICollection<Class> Class { get; set; }
     }
 }

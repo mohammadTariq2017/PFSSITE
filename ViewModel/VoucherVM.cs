@@ -1,40 +1,42 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace PFSSITE.Models
+namespace PFSSITE.ViewModel
 {
-    public class Voucher :BaseEntity
+    public class VoucherVM
     {
-        [Key]
         public int VoucherId { get; set; }
         [Display(Name = "Student")]
-        [Required]
+        [Required(ErrorMessage = "This Field is Required")]
         public int StudentId { get; set; }
         [Display(Name = "Class")]
-        [Required]
+        [Required(ErrorMessage = "This Field is Required")]
         public int ClassId { get; set; }
         [Display(Name = "Title")]
-        [Required]
+        [Required(ErrorMessage = "This Field is Required")]
+        [MaxLength(50, ErrorMessage = "Maximum 50 characters")]
         public string Title { get; set; }
         [Display(Name = "Month")]
-        [Required]
+        [Required(ErrorMessage = "This Field is Required")]
+        [MaxLength(15, ErrorMessage = "Maximum 15 characters")]
         public string Month { get; set; }
         [Display(Name = "Due Date")]
-        [Required]
+        [Required(ErrorMessage = "This Field is Required")]
+        [DisplayFormat(DataFormatString = "{0:MMM-dd-yyyy}")]
         public DateTime DueDate { get; set; }
         [Display(Name = "Receiving Date")]
+        [DisplayFormat(DataFormatString = "{0:MMM-dd-yyyy}")]
         public DateTime? ReceivingDate { get; set; }
         [Display(Name = "Amount")]
-        [Required]
+        [Required(ErrorMessage = "This Field is Required")]
         public decimal Amount { get; set; }
         [Display(Name = "Discount")]
         public decimal? Discount { get; set; }
         [Display(Name = "Remaining Amount")]
         public decimal? RemainingAmount { get; set; }
         [Display(Name = "Description")]
+        [MaxLength(500, ErrorMessage = "Maximum 500 characters")]
         public string Description { get; set; }
-        public virtual Student Student { get; set; }
-        public virtual Class Class { get; set; }
 
     }
 }

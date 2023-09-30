@@ -1,12 +1,10 @@
-﻿@model PFSSITE.Models.Student
+﻿@model PFSSITE.ViewModel.StudentVM
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Student</h4>
+<h1>Create Student</h1>
 <hr />
 <div class="row">
     <div class="col-md-12">
@@ -120,13 +118,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                    
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <div class="right m-t-10">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                    <input type="submit" value="Create" class="btn btn-sm btn-primary" />
+                    <a asp-action="Index" class="btn btn-sm btn-secondary">View All</a>
                     </div>
                 </div>
             </div>

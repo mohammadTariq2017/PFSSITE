@@ -1,36 +1,35 @@
-﻿@model PFSSITE.Models.ClassViewModel
+﻿@model PFSSITE.Models.Class
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Class Details</h1>
 
-<div>
-    <h4>Class</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.SessionId)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.Session.SessionName)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.ClassName)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.ClassName)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-    </dl>
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table">
+            <tr>
+                <th><label asp-for="SessionId" class="control-label"></label></th>
+                <td>@Html.DisplayFor(model => model.Session.SessionName)</td>
+            </tr>
+            <tr>
+                <th>
+                    <label asp-for="ClassName" class="control-label"></label>
+                </th>
+                <td>@Html.DisplayFor(model => model.ClassName)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="Description" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.Description)</td>
+            </tr>
+        </table>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model?.ClassId">Edit</a> |
-    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="right m-t-10">
+            <a asp-action="Index" class="btn btn-sm btn-secondary">View All</a>
+        </div>
+    </div>
 </div>

@@ -17,7 +17,7 @@ namespace PFSSITE.Models
 
         public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<Session> Session { get; set; }
-        public virtual DbSet<ClassViewModel> Class { get; set; }
+        public virtual DbSet<Class> Class { get; set; }
         public virtual DbSet<Voucher> Voucher { get; set; }
 
 

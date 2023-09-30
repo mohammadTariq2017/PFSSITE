@@ -28,42 +28,18 @@ namespace PFSSITE.Controllers
                         Problem("Entity set 'PFSDBContext.Class'  is null.");
         }
 
-        // GET: Classes/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Class == null)
-            {
-                return NotFound();
-            }
-
-            var @class = await _context.Class
-                .Include(s => s.Session)
-                .FirstOrDefaultAsync(m => m.ClassId == id);
-            if (@class == null)
-            {
-                return NotFound();
-            }
-
-            return View(@class);
-        }
-
-        public async Task<PartialViewResult> _Details(int? id)
+        public async Task<PartialViewResult> Details(int? id)
         {
             var @class = await _context.Class
                 .Include(s => s.Session)
                 .FirstOrDefaultAsync(m => m.ClassId == id);       
-            return PartialView("_Details",@class);
+            return PartialView("Details",@class);
         }
-        // GET: Classes/Create
-        public IActionResult Create()
-        {
-            ViewBag.SessionId = new SelectList(_context.Session, "SessionId", "SessionName").ToList();
-            return View();
-        }
-        public PartialViewResult _Create()
+
+        public PartialViewResult Create()
         {
             ViewBag.SessionId = new SelectList(_context.Session, "SessionId", "SessionName").ToList();         
-            return PartialView("_Create");
+            return PartialView("Create");
         }
 
         // POST: Classes/Create
@@ -75,7 +51,7 @@ namespace PFSSITE.Controllers
         {
             if (ModelState.IsValid)
             {
-                var classModel = new ClassViewModel();
+                var classModel = new Class();
                 classModel.ClassName = @class.ClassName;
                 classModel.SessionId = @class.SessionId;
                 classModel.Description = @class.Description;
@@ -89,27 +65,7 @@ namespace PFSSITE.Controllers
         }
 
         // GET: Classes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Class == null)
-            {
-                return NotFound();
-            }
-
-            var @class = await _context.Class.FindAsync(id);
-
-            if (@class == null)
-            {
-                return NotFound();
-            }
-            var classModel = new ClassVM();
-            classModel.SessionId = @class.SessionId;
-            classModel.ClassName = @class.ClassName;
-            classModel.Description = @class.Description;
-            ViewBag.SessionId = new SelectList(_context.Session, "SessionId", "SessionName", @class.SessionId).ToList();
-            return View(classModel);
-        }
-        public async Task<PartialViewResult> _Edit(int? id)
+        public async Task<PartialViewResult> Edit(int? id)
         {
             var @class = await _context.Class.FindAsync(id);
             var classModel = new ClassVM();
@@ -118,7 +74,7 @@ namespace PFSSITE.Controllers
             classModel.ClassName = @class.ClassName;
             classModel.Description = @class.Description;
             ViewBag.SessionId = new SelectList(_context.Session, "SessionId", "SessionName", @class.SessionId).ToList();
-            return PartialView("_Edit", classModel);
+            return PartialView("Edit", classModel);
         }
 
         // POST: Classes/Edit/5
@@ -159,23 +115,6 @@ namespace PFSSITE.Controllers
 
         }
 
-        // GET: Classes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Class == null)
-            {
-                return NotFound();
-            }
-
-            var @class = await _context.Class
-                .FirstOrDefaultAsync(m => m.ClassId == id);
-            if (@class == null)
-            {
-                return NotFound();
-            }
-
-            return View(@class);
-        }
 
         // POST: Classes/Delete/5
         [HttpPost, ActionName("Delete")]

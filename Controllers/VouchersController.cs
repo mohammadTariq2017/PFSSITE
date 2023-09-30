@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PFSSITE.Models;
+using PFSSITE.ViewModel;
 
 namespace PFSSITE.Controllers
 {
@@ -29,21 +30,12 @@ namespace PFSSITE.Controllers
         // GET: Vouchers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Voucher == null)
-            {
-                return NotFound();
-            }
-
             var voucher = await _context.Voucher
                 .Include(c => c.Class)
                 .Include(s => s.Student)
                 .FirstOrDefaultAsync(m => m.VoucherId == id);
-            if (voucher == null)
-            {
-                return NotFound();
-            }
 
-            return View(voucher);
+            return PartialView("Details",voucher);
         }
 
         // GET: Vouchers/Create
@@ -51,7 +43,7 @@ namespace PFSSITE.Controllers
         {
             ViewBag.StudentId = new SelectList(_context.Student, "StudentId", "StudentName").ToList();
             ViewBag.ClassId = new SelectList(_context.Class, "ClassId", "ClassName").ToList();
-            return View();
+            return PartialView("Create");
         }
 
         // POST: Vouchers/Create
@@ -59,7 +51,7 @@ namespace PFSSITE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("VoucherId,StudentId,ClassId,Title,Month,DueDate,ReceivingDate,Amount,Discount,RemainingAmount,Description")] Voucher voucher)
+        public async Task<IActionResult> Create(VoucherVM voucher)
         {
             if (ModelState.IsValid)
             {
@@ -75,19 +67,22 @@ namespace PFSSITE.Controllers
         // GET: Vouchers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Voucher == null)
-            {
-                return NotFound();
-            }
-
             var voucher = await _context.Voucher.FindAsync(id);
-            if (voucher == null)
-            {
-                return NotFound();
-            }
+            var voucherModel = new VoucherVM();
+            voucherModel.VoucherId = voucher.VoucherId;
+            voucherModel.Title = voucher.Title;
+            voucherModel.DueDate = voucher.DueDate;
+            voucherModel.Description = voucher.Description;
+            voucherModel.Amount = voucher.Amount;
+            voucherModel.RemainingAmount = voucher.RemainingAmount;
+            voucherModel.Month = voucher.Month;
+            voucherModel.StudentId = voucher.StudentId;
+            voucherModel.ClassId = voucher.ClassId;
+            voucherModel.Discount = voucher.Discount;
+            voucherModel.ReceivingDate = voucher.ReceivingDate;
             ViewBag.StudentId = new SelectList(_context.Student, "StudentId", "StudentName", voucher.StudentId).ToList();
             ViewBag.ClassId = new SelectList(_context.Class, "ClassId", "ClassName", voucher.ClassId).ToList();
-            return View(voucher);
+            return PartialView("Edit", voucherModel);
         }
 
         // POST: Vouchers/Edit/5
@@ -95,7 +90,7 @@ namespace PFSSITE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("VoucherId,StudentId,ClassId,Title,Month,DueDate,ReceivingDate,Amount,Discount,RemainingAmount,Description")] Voucher voucher)
+        public async Task<IActionResult> Edit(int id,VoucherVM voucher)
         {
             var voucherModel = _context.Voucher.Find(id);
             if (voucherModel == null)
@@ -136,23 +131,6 @@ namespace PFSSITE.Controllers
 
         }
 
-        // GET: Vouchers/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Voucher == null)
-            {
-                return NotFound();
-            }
-
-            var voucher = await _context.Voucher
-                .FirstOrDefaultAsync(m => m.VoucherId == id);
-            if (voucher == null)
-            {
-                return NotFound();
-            }
-
-            return View(voucher);
-        }
 
         // POST: Vouchers/Delete/5
         [HttpPost, ActionName("Delete")]

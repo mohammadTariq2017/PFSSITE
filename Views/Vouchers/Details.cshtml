@@ -4,75 +4,61 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Voucher Details</h1>
 
-<div>
-    <h4>Voucher</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StudentId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Student.StudentName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ClassId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Class.ClassName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Month)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Month)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DueDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DueDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ReceivingDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReceivingDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Amount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Amount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Discount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Discount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RemainingAmount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RemainingAmount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model?.VoucherId">Edit</a> |
-    <a asp-action="Index" class="btn btn-primary">Back to List</a>
-</div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table">
+                <tr>
+                    <th><label asp-for="StudentId" class="control-label"></label></th>
+                    <td>@Html.DisplayFor(model => model.Student.StudentName)</td>
+                </tr>
+                <tr>
+                    <th>
+                        <label asp-for="ClassId" class="control-label"></label>
+                    </th>
+                    <td>@Html.DisplayFor(model => model.Class.ClassName)</td>
+                </tr>
+                <tr>
+                    <th><label asp-for="Title" class="control-label"></label></th>
+                    <td> @Html.DisplayFor(model => model.Title)</td>
+                </tr>
+                <tr>
+                    <th><label asp-for="Month" class="control-label"></label></th>
+                    <td> @Html.DisplayFor(model => model.Month)</td>
+                </tr>
+                <tr>
+                    <th><label asp-for="DueDate" class="control-label"></label></th>
+                    <td> @Html.DisplayFor(model => model.DueDate)</td>
+                </tr>
+                <tr>
+                    <th><label asp-for="ReceivingDate" class="control-label"></label></th>
+                    <td> @Html.DisplayFor(model => model.ReceivingDate)</td>
+                </tr>
+                <tr>
+                    <th><label asp-for="Amount" class="control-label"></label></th>
+                    <td> @Html.DisplayFor(model => model.Amount)</td>
+                </tr>
+                <tr>
+                    <th><label asp-for="Discount" class="control-label"></label></th>
+                    <td> @Html.DisplayFor(model => model.Discount)</td>
+                </tr>
+                <tr>
+                    <th><label asp-for="RemainingAmount" class="control-label"></label></th>
+                    <td> @Html.DisplayFor(model => model.RemainingAmount)</td>
+                </tr>                
+                <tr>
+                    <th><label asp-for="Description" class="control-label"></label></th>
+                    <td> @Html.DisplayFor(model => model.Description)</td>
+                </tr>           
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="right m-t-10">
+                <a asp-action="Index" class="btn btn-sm btn-secondary">View All</a>
+            </div>
+        </div>
+    </div>
+    

@@ -4,123 +4,92 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Student Details</h1>
 
-<div>
-    <h4>Student</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GRNO)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GRNO)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RollNo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RollNo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StudentName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StudentName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FatherName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FatherName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ClassId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Class.ClassName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DOB)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DOB)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phone1)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone2)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phone2)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AdmissionDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AdmissionDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FatherCNIC)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FatherCNIC)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AdmissionFee)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AdmissionFee)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MonthlyFee)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MonthlyFee)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AnnualCharges)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AnnualCharges)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StationaryCharges)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StationaryCharges)
-        </dd>
-    </dl>
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table">
+            <tr>
+                <th><label asp-for="GRNO" class="control-label"></label></th>
+                <td>@Html.DisplayFor(model => model.GRNO)</td>
+            </tr>
+            <tr>
+                <th>
+                    <label asp-for="RollNo" class="control-label"></label>
+                </th>
+                <td>@Html.DisplayFor(model => model.RollNo)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="StudentName" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.StudentName)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="FatherName" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.FatherName)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="ClassId" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.Class.ClassName)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="DOB" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.DOB)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="Gender" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.Gender)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="Phone1" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.Phone1)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="Phone2" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.Phone2)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="Address" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.Address)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="AdmissionDate" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.AdmissionDate)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="Status" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.Status)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="Description" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.Description)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="FatherCNIC" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.FatherCNIC)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="AdmissionFee" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.AdmissionFee)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="MonthlyFee" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.MonthlyFee)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="AnnualCharges" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.AnnualCharges)</td>
+            </tr>
+            <tr>
+                <th><label asp-for="StationaryCharges" class="control-label"></label></th>
+                <td> @Html.DisplayFor(model => model.StationaryCharges)</td>
+            </tr>
+        </table>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model?.StudentId">Edit</a> |
-    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="right m-t-10">
+            <a asp-action="Index" class="btn btn-sm btn-secondary">View All</a>
+        </div>
+    </div>
 </div>

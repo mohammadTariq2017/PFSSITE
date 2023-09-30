@@ -2,7 +2,7 @@
 
 namespace PFSSITE.Models
 {
-    public class ClassViewModel : BaseEntity
+    public class Class : BaseEntity
     {
 
         [Key]

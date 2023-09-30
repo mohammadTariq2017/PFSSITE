@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PFSSITE.Models;
+using PFSSITE.ViewModel;
 
 namespace PFSSITE.Controllers
 {
@@ -29,21 +30,12 @@ namespace PFSSITE.Controllers
 
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Student == null)
-            {
-                return NotFound();
-            }
-
+        {   
             var student = await _context.Student
                 .Include(c => c.Class)
                 .FirstOrDefaultAsync(m => m.StudentId == id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-
-            return View(student);
+     
+            return PartialView("Details",student);
         }
 
         // GET: Students/Create
@@ -52,7 +44,7 @@ namespace PFSSITE.Controllers
             var lstStatus = new List<Status> { new Status { Value = "Active", Text = "Active" }, new Status { Value = "InActive", Text = "InActive" } };
             ViewBag.Status = new SelectList(lstStatus, "Value", "Text").ToList();
             ViewBag.ClassId = new SelectList(_context.Class, "ClassId", "ClassName").ToList();
-            return View();
+            return PartialView("Create",new StudentVM());
         }
 
         // POST: Students/Create
@@ -60,7 +52,7 @@ namespace PFSSITE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentId,GRNO,RollNo,StudentName,FatherName,ClassId,DOB,Gender,Phone1,Phone2,Address,AdmissionDate,Status,Description,FatherCNIC,AdmissionFee,MonthlyFee,AnnualCharges,StationaryCharges")] Student student)
+        public async Task<IActionResult> Create(StudentVM student)
         {
             if (ModelState.IsValid)
             {
@@ -82,20 +74,31 @@ namespace PFSSITE.Controllers
         // GET: Students/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Student == null)
-            {
-                return NotFound();
-            }
-
             var student = await _context.Student.FindAsync(id);
-            if (student == null)
-            {
-                return NotFound();
-            }
+            var studentVm = new StudentVM();
+            studentVm.StudentId = student.StudentId;
+            studentVm.Address = student.Address;
+            studentVm.StudentName = student.StudentName;
+            studentVm.Status = student.Status;
+            studentVm.Phone1 = student.Phone1;
+            studentVm.Phone2 = student.Phone2;
+            studentVm.GRNO = student.GRNO;
+            studentVm.RollNo = student.RollNo;
+            studentVm.StationaryCharges = student.StationaryCharges;
+            studentVm.AdmissionDate = student.AdmissionDate;
+            studentVm.AdmissionFee = student.AdmissionFee;
+            studentVm.AnnualCharges = student.AnnualCharges;
+            studentVm.Gender = student.Gender;
+            studentVm.FatherName = student.FatherName;
+            studentVm.FatherCNIC = student.FatherCNIC;
+            studentVm.Description = student.Description;
+            studentVm.DOB = student.DOB;
+            studentVm.MonthlyFee = student.MonthlyFee;
+            studentVm.ClassId = student.ClassId;
             var lstStatus = new List<Status> { new Status { Value = "Active", Text = "Active" }, new Status { Value = "InActive", Text = "InActive" } };
             ViewBag.Status = new SelectList(lstStatus, "Value", "Text", student.Status).ToList();
             ViewBag.ClassId = new SelectList(_context.Class, "ClassId", "ClassName", student.ClassId).ToList();
-            return View(student);
+            return PartialView("Edit",studentVm);
         }
 
         // POST: Students/Edit/5
@@ -103,7 +106,7 @@ namespace PFSSITE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentId,GRNO,RollNo,StudentName,FatherName,ClassId,DOB,Gender,Phone1,Phone2,Address,AdmissionDate,Status,Description,FatherCNIC,AdmissionFee,MonthlyFee,AnnualCharges,StationaryCharges")] Student student)
+        public async Task<IActionResult> Edit(int id, StudentVM student)
         {
             var studentModel = _context.Student.Find(id);
             if (studentModel==null)
@@ -132,7 +135,7 @@ namespace PFSSITE.Controllers
                 studentModel.Description = student.Description;
                 studentModel.DOB = student.DOB;
                 studentModel.MonthlyFee = student.MonthlyFee;
-                studentModel.ClassId = studentModel.ClassId;
+                studentModel.ClassId = student.ClassId;
 
                 _context.Update(studentModel);
                 await _context.SaveChangesAsync();
@@ -150,26 +153,6 @@ namespace PFSSITE.Controllers
             }
             return RedirectToAction(nameof(Index));
 
-        }
-
-        // GET: Students/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Student == null)
-            {
-                return NotFound();
-            }
-
-            var student = await _context.Student
-                .FirstOrDefaultAsync(m => m.StudentId == id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-            var lstStatus = new List<Status> { new Status { Value = "Active", Text = "Active" }, new Status { Value = "InActive", Text = "InActive" } };
-            ViewBag.Status = new SelectList(lstStatus, "Value", "Text", student.Status).ToList();
-            ViewBag.ClassId = new SelectList(_context.Class, "ClassId", "ClassName", student.ClassId).ToList();
-            return View(student);
         }
 
         // POST: Students/Delete/5

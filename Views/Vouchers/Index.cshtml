@@ -6,9 +6,6 @@
 
 <h1>Vouchers</h1>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -30,7 +27,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.Amount)
             </th>
-            <th></th>
+            <th>
+                <a onclick="openCreateModel()" class="btn btn-sm btn-success">
+                    <i class="fa fa-plus"></i> New
+                </a>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -56,11 +57,113 @@
                     @Html.DisplayFor(modelItem => item.Amount)
                 </td>
                 <td>
-                    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.VoucherId">Edit</a> |
-                    <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.VoucherId">Details</a> |
-                    <a asp-action="Delete" class="btn btn-primary" asp-route-id="@item.VoucherId">Delete</a>
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-sm btn-secondary" onclick="openEditModel(@item.VoucherId)"> <i class="fa fa-pen"></i></a>
+                        <a onclick="openDetailModel(@item.VoucherId)" class="btn btn-sm btn-dark"> <i class="fa fa-list"></i></a>
+                        <form asp-action="Delete" asp-route-id="@item.VoucherId">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete this record?')">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" id="_DetailsModel">
+            @Html.Partial("Details", new PFSSITE.Models.Voucher())
+        </div>
+    </div>
+</div>
+
+<div id="myModalCreate" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" id="_CreateModel">
+            @Html.Partial("Create", new PFSSITE.ViewModel.VoucherVM())
+        </div>
+    </div>
+</div>
+
+<div id="myModalEdit" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" id="_EditModel">
+            @Html.Partial("Edit", new PFSSITE.ViewModel.VoucherVM())
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function openDetailModel(detailid) {
+        $.ajax({
+            url: '/Vouchers/Details',
+            type: 'Get', // or 'GET' depending on your request type
+            data: { id: detailid },
+            success: function (result) {
+                // Handle success
+                $("#_DetailsModel").html(result);
+                $('#myModal').modal('show');
+            },
+            error: function (xhr, status, error) {
+                if (xhr.status === 400) {
+                    // Handle the 400 Bad Request error
+                    var errorMessage = xhr.responseText;
+                    alert('Error: ' + errorMessage);
+                } else {
+                    // Handle other error cases
+                    alert('An error occurred: ' + status + ' - ' + error);
+                }
+            }
+        });
+
+    }
+    function openCreateModel() {
+        $.ajax({
+            url: '/Vouchers/Create',
+            type: 'Get', // or 'GET' depending on your request type
+            success: function (result) {
+                // Handle success
+                $("#_CreateModel").html(result);
+                $('#myModalCreate').modal('show');
+            },
+            error: function (xhr, status, error) {
+                if (xhr.status === 400) {
+                    // Handle the 400 Bad Request error
+                    var errorMessage = xhr.responseText;
+                    alert('Error: ' + errorMessage);
+                } else {
+                    // Handle other error cases
+                    alert('An error occurred: ' + status + ' - ' + error);
+                }
+            }
+        });
+
+    }
+    function openEditModel(editid) {
+        $.ajax({
+            url: '/Vouchers/Edit',
+            type: 'Get', // or 'GET' depending on your request type
+            data: { id: editid },
+            success: function (result) {
+                // Handle success
+                $("#_EditModel").html(result);
+                $('#myModalEdit').modal('show');
+            },
+            error: function (xhr, status, error) {
+                if (xhr.status === 400) {
+                    // Handle the 400 Bad Request error
+                    var errorMessage = xhr.responseText;
+                    alert('Error: ' + errorMessage);
+                } else {
+                    // Handle other error cases
+                    alert('An error occurred: ' + status + ' - ' + error);
+                }
+            }
+        });
+
+    }
+
+</script>
