@@ -1,0 +1,139 @@
+﻿@model PFSSITE.Models.Student
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="StudentId" />
+            <div class="row">
+                <div class="col-lg-4">
+                    <label asp-for="GRNO" class="control-label"></label>
+                    <input asp-for="GRNO" class="form-control" />
+                    <span asp-validation-for="GRNO" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4">
+                    <label asp-for="RollNo" class="control-label"></label>
+                    <input asp-for="RollNo" class="form-control" />
+                    <span asp-validation-for="RollNo" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4">
+                    <label asp-for="StudentName" class="control-label"></label>
+                    <input asp-for="StudentName" class="form-control" />
+                    <span asp-validation-for="StudentName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <label asp-for="FatherName" class="control-label"></label>
+                    <input asp-for="FatherName" class="form-control" />
+                    <span asp-validation-for="FatherName" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4">
+                    <label asp-for="ClassId" class="control-label"></label>
+                    <select class="form-control" asp-for="ClassId" asp-items="ViewBag.ClassId">
+                        <option value="">Select Class</option>
+                    </select>
+                    <span asp-validation-for="ClassId" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4">
+                    <label asp-for="DOB" class="control-label"></label>
+                    <input asp-for="DOB" class="form-control" />
+                    <span asp-validation-for="DOB" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <label asp-for="Gender" class="control-label"></label>
+                    <input asp-for="Gender" class="form-control" />
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4">
+                    <label asp-for="Phone1" class="control-label"></label>
+                    <input asp-for="Phone1" class="form-control" />
+                    <span asp-validation-for="Phone1" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4">
+                    <label asp-for="Phone2" class="control-label"></label>
+                    <input asp-for="Phone2" class="form-control" />
+                    <span asp-validation-for="Phone2" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <label asp-for="Address" class="control-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4">
+                    <label asp-for="AdmissionDate" class="control-label"></label>
+                    <input asp-for="AdmissionDate" class="form-control" />
+                    <span asp-validation-for="AdmissionDate" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4">
+                    <label asp-for="Status" class="control-label"></label>
+                    <select class="form-control" asp-for="Status" asp-items="ViewBag.Status">
+                        <option value="">Select Status</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4">
+                    <label asp-for="FatherCNIC" class="control-label"></label>
+                    <input asp-for="FatherCNIC" class="form-control" />
+                    <span asp-validation-for="FatherCNIC" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4">
+                    <label asp-for="AdmissionFee" class="control-label"></label>
+                    <input asp-for="AdmissionFee" class="form-control" />
+                    <span asp-validation-for="AdmissionFee" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <label asp-for="MonthlyFee" class="control-label"></label>
+                    <input asp-for="MonthlyFee" class="form-control" />
+                    <span asp-validation-for="MonthlyFee" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4">
+                    <label asp-for="AnnualCharges" class="control-label"></label>
+                    <input asp-for="AnnualCharges" class="form-control" />
+                    <span asp-validation-for="AnnualCharges" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4">
+                    <label asp-for="StationaryCharges" class="control-label"></label>
+                    <input asp-for="StationaryCharges" class="form-control" />
+                    <span asp-validation-for="StationaryCharges" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                </div>
+                <div class="col-lg-4">
+                    <div class="right m-t-10">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
