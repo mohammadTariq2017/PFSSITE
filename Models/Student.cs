@@ -28,6 +28,7 @@ namespace PFSSITE.Models
         public int ClassId { get; set; }
         [Display(Name = "DOB")]
         [Required]
+        [DisplayFormat(DataFormatString = "{0:MMM-dd-yyyy}")]
         public DateTime? DOB { get; set; }
         [Display(Name = "Gender")]
         [Required]
@@ -43,6 +44,7 @@ namespace PFSSITE.Models
         public string Address { get; set; }
         [Display(Name = "Admission Date")]
         [Required]
+        [DisplayFormat(DataFormatString = "{0:MMM-dd-yyyy}")]
         public DateTime AdmissionDate { get; set; }
         [Display(Name = "Status")]
         [Required]

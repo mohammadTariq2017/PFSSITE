@@ -21,7 +21,7 @@ body {
   margin-bottom: 60px;
 }
 .modal-content {
-padding:30px;
+    padding: 30px;
 }
 .right {
 float:right;
@@ -40,4 +40,8 @@ margin-top:10px;
 }
 .m-r-10 {
     margin-right: 10px;
+}
+.details {
+    max-height: 580px;
+    overflow-y: scroll;
 }

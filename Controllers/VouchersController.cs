@@ -55,7 +55,19 @@ namespace PFSSITE.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(voucher);
+                var voucherModel = new Voucher();
+                voucherModel.Amount=voucher.Amount;
+                voucherModel.ClassId = voucher.ClassId;
+                voucherModel.StudentId = voucher.StudentId;
+                voucherModel.DueDate = voucher.DueDate;
+                voucherModel.ReceivingDate = voucher.ReceivingDate;
+                voucherModel.RemainingAmount = voucher.RemainingAmount;
+                voucherModel.Month = voucher.Month;
+                voucherModel.Title = voucher.Title;
+                voucherModel.Description = voucher.Description;
+                voucherModel.Discount = voucher.Discount;
+
+                _context.Add(voucherModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

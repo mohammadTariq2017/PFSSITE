@@ -21,8 +21,10 @@ namespace PFSSITE.Models
         public string Month { get; set; }
         [Display(Name = "Due Date")]
         [Required]
+        [DisplayFormat(DataFormatString = "{0:MMM-dd-yyyy}")]
         public DateTime DueDate { get; set; }
         [Display(Name = "Receiving Date")]
+        [DisplayFormat(DataFormatString = "{0:MMM-dd-yyyy}")]
         public DateTime? ReceivingDate { get; set; }
         [Display(Name = "Amount")]
         [Required]
